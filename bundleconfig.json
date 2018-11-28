@@ -1,0 +1,29 @@
+[{
+	"inputFiles": [
+        "node_modules/gsap/src/uncompressed/easing/EasePack.js",
+        "node_modules/gsap/src/uncompressed/TweenLite.js",
+        "node_modules/gsap/src/uncompressed/TweenMax.js",
+        "node_modules/three/build/three.js"
+    ],
+	"outputFileName": "docs/world/js/world.vendors.js",
+	"minify": {
+		"enabled": true
+	}
+}, {
+	"inputFiles": [
+        "docs/world/css/world.css"
+    ],
+	"outputFileName": "docs/world/css/world.css",
+	"minify": {
+		"enabled": true
+	}
+}, {
+	"inputFiles": [
+        "src/js/utils/prototype.js",
+        "src/js/world.js"
+    ],
+	"outputFileName": "docs/world/js/world.js",
+	"minify": {
+		"enabled": true
+	}
+}]
