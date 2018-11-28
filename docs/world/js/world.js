@@ -46,8 +46,8 @@
 	var world = addWorld(scene);
 	var particles = addParticles(world);
 
-	onWindowResize();
 	play();
+	onWindowResize();
 
 	window.addEventListener('resize', onWindowResize, false);
 
