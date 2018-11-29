@@ -61,7 +61,6 @@
 		},
 		// mouse
 		onMouseDown: function(e) {
-			console.log(this);
 			this.target.removeEventListener('touchstart', this.onTouchStart);
 			this.onDown({
 				x: e.clientX,
@@ -209,7 +208,6 @@
 		var dragListener = new DragListener(canvas, function(e) {
 			worldStartDragRotation.copy(worldDragRotation);
 		}, function(e) {
-			console.log('onDrag', e);
 			worldDragRotation.copy(worldStartDragRotation).add(new THREE.Euler(0, Math.PI * e.strength.x, 0, 'XYZ'));
 			worldSpeedRotation.set(0, 0, 0, 'XYZ');
 		}, function(e) {
@@ -254,7 +252,9 @@
 		}
 
 		function addWorld(parent, rotation, texture) {
-			var geometry = new THREE.SphereGeometry(0.5, 64, 64);
+			var geometry = new THREE.SphereGeometry(0.5, 32, 32);
+			// var geometry2 = new THREE.IcosahedronGeometry(0.5, 4);
+			// console.log(geometry2.vertices.length, geometry.vertices.length);
 			var material = new THREE.MeshStandardMaterial({
 				color: '#fff',
 				transparent: true,

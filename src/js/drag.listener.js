@@ -61,7 +61,6 @@
 		},
 		// mouse
 		onMouseDown: function(e) {
-			console.log(this);
 			this.target.removeEventListener('touchstart', this.onTouchStart);
 			this.onDown({
 				x: e.clientX,
