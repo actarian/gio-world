@@ -1,11 +1,11 @@
 {
-	"name": "came",
-	"displayName": "came",
+	"name": "gio-world",
+	"displayName": "gio-world",
 	"description": "test",
 	"version": "0.1.0",
 	"publisher": "circledev",
 	"license": "UNLICENSED",
-	"homepage": "https://github.com/actarian/came/blob/master/README.md",
+	"homepage": "https://github.com/actarian/gio-world/blob/master/README.md",
 	"scripts": {
 		"start": "gulp",
 		"postinstall": "npm run start"
@@ -43,7 +43,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git://github.com/actarian/came.git"
+		"url": "git://github.com/actarian/gio-world.git"
 	},
 	"dependencies": {
 		"gsap": "^2.0.2",

@@ -19,7 +19,7 @@
 	}
 }, {
 	"inputFiles": [
-        "src/js/utils/prototype.js",
+        "src/js/drag.listener.js",
         "src/js/world.js"
     ],
 	"outputFileName": "docs/world/js/world.js",
