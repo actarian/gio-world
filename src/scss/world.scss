@@ -19,18 +19,75 @@ body {
 	}
 }
 
-#canvas {
-	position: absolute;
-	width: 100vw;
-	height: 60vw;
-	overflow: hidden;
-	top: 0;
+.world {
+	position: relative;
 
 	user-select: none;
 	-moz-user-select: none;
 	-khtml-user-select: none;
 	-webkit-user-select: none;
 	-o-user-select: none;
+
+	.title {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		opacity: 0;
+		transition: opacity 250ms 0 ease-in-out;
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+	.shadow {
+		position: absolute;
+		width: 43.25%;
+		top: 50%;
+		left: 50%;
+		transform: translateX(-50%) translateY(-50%);
+		opacity: 0;
+		transition: opacity 450ms 800ms ease-in-out;
+
+		img {
+			width: 100%;
+		}
+	}
+
+	.canvas {
+		position: relative;
+		width: 100vw;
+		height: 60vw;
+		overflow: hidden;
+		top: 0;
+		opacity: 0;
+		transition: opacity 350ms 700ms ease-in-out;
+	}
+
+	&.init {
+		.title {
+			opacity: 1;
+		}
+
+		.shadow {
+			opacity: 0.5;
+		}
+
+		.canvas {
+			opacity: 1;
+		}
+	}
+
+}
+
+/*
+.canvas {
+	position: absolute;
+	width: 100vw;
+	height: 60vw;
+	overflow: hidden;
+	top: 0;
 
 	&:before {
 		content: '';
@@ -42,3 +99,4 @@ body {
 		opacity: 0.75;
 	}
 }
+*/

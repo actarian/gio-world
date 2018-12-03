@@ -149,16 +149,21 @@
 
 	function createScene() {
 
+		document.querySelector('.world').setAttribute('class', 'world init');
+
 		var cities = [
-		[43.9096538, 12.8399805], // pesaro
-		[41.8519772, 12.2347364], // rome
-		[51.5287718, -0.2416791], // london
-		[55.6713812, 12.4537393], // copenaghen
-		[40.6976637, -74.1197623], // new york
-		[19.3911668, -99.4238221], // mexico city
-		[39.9390731, 116.11726], // beijing
-		[31.2243084, 120.9162376], // shangai
-	];
+			[43.9096538, 12.8399805], // pesaro
+			[41.8519772, 12.2347364], // rome
+			[51.5287718, -0.2416791], // london
+			[55.6713812, 12.4537393], // copenaghen
+			[40.6976637, -74.1197623], // new york
+			[19.3911668, -99.4238221], // mexico city
+			[39.9390731, 116.11726], // beijing
+			[31.2243084, 120.9162376], // shangai
+		];
+
+		var mouse = { x: 0, y: 0 },
+			parallax = { x: 0, y: 0 };
 
 		var renderer = new THREE.WebGLRenderer({
 			alpha: true,
@@ -166,7 +171,10 @@
 		});
 		renderer.shadowMap.enabled = true;
 		renderer.setSize(window.innerWidth, window.innerHeight);
-		var canvas = document.querySelector('#canvas');
+
+		var title = document.querySelector('.world > .title');
+		var shadow = document.querySelector('.world > .shadow');
+		var canvas = document.querySelector('.world > .canvas');
 		canvas.appendChild(renderer.domElement);
 		var scene = new THREE.Scene();
 		scene.fog = new THREE.FogExp2(0x000000, 0.1); // new THREE.Fog(0x000000, 0, 10);
@@ -205,6 +213,8 @@
 		var particles = addParticles(world);
 
 		window.addEventListener('resize', onWindowResize, false);
+		document.addEventListener('mousemove', onMouseMove, false);
+
 		var dragListener = new DragListener(canvas, function(e) {
 			worldStartDragRotation.copy(worldDragRotation);
 		}, function(e) {
@@ -252,7 +262,7 @@
 		}
 
 		function addWorld(parent, rotation, texture) {
-			var geometry = new THREE.SphereGeometry(0.5, 32, 32);
+			var geometry = new THREE.SphereGeometry(0.5, 48, 48);
 			// var geometry2 = new THREE.IcosahedronGeometry(0.5, 4);
 			// console.log(geometry2.vertices.length, geometry.vertices.length);
 			var material = new THREE.MeshStandardMaterial({
@@ -318,6 +328,39 @@
 			}
 		}
 
+		function onMouseMove(e) {
+			var w2 = window.innerWidth / 2;
+			var h2 = window.innerHeight / 2;
+			mouse = {
+				x: (e.clientX - w2) / w2,
+				y: (e.clientY - h2) / h2,
+			};
+			// console.log('onMouseMove', mouse);
+		}
+
+		function doParallax() {
+			// parallax
+			parallax.x += (mouse.x - parallax.x) / 8;
+			parallax.y += (mouse.y - parallax.y) / 8;
+			//
+			var titleXy = {
+				x: -50 + 0.5 * -parallax.x,
+				y: -50 + 0.5 * -parallax.y,
+			};
+			TweenLite.set(title, {
+				transform: 'translateX(' + titleXy.x + '%) translateY(' + titleXy.y + '%)'
+			});
+			var shadowXy = {
+				x: -50 + 3 * -parallax.x,
+				y: -50 + 3 * -parallax.y,
+			};
+			TweenLite.set(shadow, {
+				transform: 'translateX(' + shadowXy.x + '%) translateY(' + shadowXy.y + '%)'
+			});
+			directional1.position.set(parallax.x * 0.3, 2 + parallax.y * 0.3, 0.5);
+			directional2.position.set(parallax.x * 0.3, -2 + parallax.y * 0.3, 0);
+		}
+
 		function render(delta) {
 			if (!dragListener.dragging) {
 				worldRotation.y += worldSpeedRotation.y;
@@ -332,6 +375,7 @@
 				particles.geometry.colorsNeedUpdate = true;
 			});
 			renderer.render(scene, camera);
+			doParallax();
 		}
 
 		function calcPosFromLatLonRad(lat, lon, radius) {
