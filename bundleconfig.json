@@ -5,15 +5,15 @@
         "node_modules/gsap/src/uncompressed/TweenMax.js",
         "node_modules/three/build/three.js"
     ],
-	"outputFileName": "docs/world/js/world.vendors.js",
+	"outputFileName": "docs/js/vendors.js",
 	"minify": {
 		"enabled": true
 	}
 }, {
 	"inputFiles": [
-        "docs/world/css/world.css"
+        "docs/css/world.css"
     ],
-	"outputFileName": "docs/world/css/world.css",
+	"outputFileName": "docs/css/world.css",
 	"minify": {
 		"enabled": true
 	}
@@ -22,7 +22,7 @@
         "src/js/drag.listener.js",
         "src/js/world.js"
     ],
-	"outputFileName": "docs/world/js/world.js",
+	"outputFileName": "docs/js/world.js",
 	"minify": {
 		"enabled": true
 	}

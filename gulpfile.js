@@ -225,7 +225,7 @@ gulp.task('watch', function(done) {
 gulp.task('webserver', function() {
 	return gulp.src('./docs/')
 		.pipe(webserver({
-			port: 6001,
+			port: 6011,
 			fallback: 'index.html',
 			open: true,
 			livereload: true,

@@ -43,6 +43,7 @@
 		renderer.shadowMap.enabled = true;
 		renderer.setSize(window.innerWidth, window.innerHeight);
 
+		// canvas.innerHTML = '';
 		canvas.appendChild(renderer.domElement);
 		var scene = new THREE.Scene();
 		scene.fog = new THREE.FogExp2(0x000000, 0.1); // new THREE.Fog(0x000000, 0, 10);
