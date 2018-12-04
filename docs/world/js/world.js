@@ -136,11 +136,15 @@
 (function() {
 	'use strict';
 
-	var worldTexture;
+	var title = document.querySelector('.section-world > .title');
+	var shadow = document.querySelector('.section-world > .shadow');
+	var canvas = document.querySelector('.section-world > .canvas');
+
+	var worldTexture, worldTextureSrc = canvas.getAttribute('texture');
 
 	var loader = new THREE.TextureLoader();
 	loader.crossOrigin = '';
-	loader.load('world/img/world-texture.gif', function(texture) {
+	loader.load(worldTextureSrc, function(texture) {
 		// texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
 		// texture.repeat.set(2, 2);
 		worldTexture = texture;
@@ -149,7 +153,7 @@
 
 	function createScene() {
 
-		document.querySelector('.world').setAttribute('class', 'world init');
+		document.querySelector('.section-world').setAttribute('class', 'section-world init');
 
 		var cities = [
 			[43.9096538, 12.8399805], // pesaro
@@ -172,9 +176,6 @@
 		renderer.shadowMap.enabled = true;
 		renderer.setSize(window.innerWidth, window.innerHeight);
 
-		var title = document.querySelector('.world > .title');
-		var shadow = document.querySelector('.world > .shadow');
-		var canvas = document.querySelector('.world > .canvas');
 		canvas.appendChild(renderer.domElement);
 		var scene = new THREE.Scene();
 		scene.fog = new THREE.FogExp2(0x000000, 0.1); // new THREE.Fog(0x000000, 0, 10);
@@ -317,6 +318,9 @@
 				aspect: 0,
 			};
 			size.width = canvas.offsetWidth;
+			TweenLite.set(canvas, {
+				height: canvas.offsetWidth * 0.6
+			});
 			size.height = canvas.offsetHeight;
 			size.aspect = size.width / size.height;
 			if (renderer) {
